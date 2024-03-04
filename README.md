@@ -1,5 +1,5 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>V kabilan</H3>
+<H3>212222100018</H3>
 <H3>EX. NO.1</H3>
 <H3>DATE</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
@@ -37,11 +37,41 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+import pandas as pd                                                 # Importing Libraries
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
+df.isnull().sum()                                                   # Finding Missing Values
+df.duplicated().sum()                                               # Check For Duplicates
+df=df.drop(['Surname', 'Geography','Gender'], axis=1)               # Remove Unnecessary Columns
+scaler=StandardScaler()                                             # Normalize the dataset
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values                     # Split the dataset into input and output
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)   # Splitting the data for training & Testing
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)                     # X Train and Test
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)                   # Y Train and Test
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+## DATASETS
+![image](https://github.com/kabilan22000284/Ex-1-NN/assets/123469171/845c210a-7f1b-4ea0-a255-381492af7f27)
+## NULLVALUES
+![image](https://github.com/kabilan22000284/Ex-1-NN/assets/123469171/68cb23ad-db0c-4e8c-b615-e727e70565a6)
+## DATA SPLITTING
+![image](https://github.com/kabilan22000284/Ex-1-NN/assets/123469171/be44da39-32e6-449d-b65e-f136c0c8ada9)
+## TRAIN AND TEST DATA
+![image](https://github.com/kabilan22000284/Ex-1-NN/assets/123469171/026b3370-2bb6-48de-b0f3-16f094657a4e)
+
+
+
+
 
 
 ## RESULT:
